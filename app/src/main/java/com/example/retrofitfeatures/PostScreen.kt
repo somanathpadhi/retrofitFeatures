@@ -26,14 +26,7 @@ fun PostScreen(viewModel: PostViewModel){
     when(val result = resultState){
         ResultState.Loading -> {
             Log.d("myLog","Now Loading...")
-            Box(
-                contentAlignment = Alignment.Center,
-                modifier = Modifier.fillMaxSize()
-            ) {
-                CircularProgressIndicator(
-                    modifier = Modifier.size(32.dp)
-                )
-            }
+            ProgressBarSmall()
         }
         ResultState.empty -> {}
         is ResultState.Failure -> {
@@ -58,7 +51,17 @@ fun Item(post: Post) {
         Text(text = post.id.toString(), modifier = Modifier.padding(4.dp))
     }
 }
-
+@Composable
+fun ProgressBarSmall(){
+    Box(
+        contentAlignment = Alignment.Center,
+        modifier = Modifier.fillMaxSize()
+    ) {
+        CircularProgressIndicator(
+            modifier = Modifier.size(32.dp)
+        )
+    }
+}
 @Preview
 @Composable
 fun ItemPreview(){
